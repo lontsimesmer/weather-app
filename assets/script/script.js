@@ -14,7 +14,7 @@ const generateForcast = (forecast) => {
   return `
         <div class="icon-data">
             <img
-            src="./assets/image/cloudy.png"
+            src="./assets/images/cloudy.png"
             alt="cloud"
             style="height: 18px; width: 18px"
             />
