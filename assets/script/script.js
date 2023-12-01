@@ -1,16 +1,47 @@
-import { getlocation } from './utils.js'
+const searchField = document.getElementById("search-field");
+const temp = document.getElementById("temp");
+const wind = document.getElementById("wind");
+const humid = document.getElementById("humid");
+const sight = document.getElementById("sight");
+const feel = document.getElementById("feel");
+const rain = document.getElementById("rain");
+const element3 = document.getElementById("element3");
+const API_KEY = "b63c2cbd13be89101a87270b161a6cf0";
 
-const searchField = document.getElementById('search-field')
-const temp = document.getElementById('temp')
-const wind = document.getElementById('wind')
-const humid = document.getElementById('humid')
-const sight = document.getElementById('sight')
-const feel = document.getElementById('feel')
-const rain = document.getElementById('rain')
+const getDetailsOnWeather = (cityName, lat, lon, local_name) => {
+  const WEATHER_API_URL = `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&local_name=${local_name}&appid=${API_KEY}`;
 
-const element3 = document.getElementById('element3')
+  fetch(WEATHER_API_URL)
+    .then((res) => res.json())
+    .then((data) => {
+      formDataObject(data);
+    })
+    .catch((e) => {
+      console.error(e);
+      alert("Error occured during the fetching process");
+    });
+};
 
-const generateForcast = (forecast) => {
+const getLocation = (cityName) => {
+  if (!cityName) return;
+  console.log(cityName);
+
+  const GEOMETRIC_API_URL = `http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=5&appid=${API_KEY}`;
+
+  fetch(GEOMETRIC_API_URL)
+    .then((res) => res.json())
+    .then((data) => {
+      // console.log(data);
+      if (!data.length) return alert(`Nothing found for ${cityName}`);
+      const { name, lat, lon } = data[0];
+      getDetailsOnWeather(name, lat, lon);
+    })
+    .catch(() => {
+      // alert('Error occured while fetching')
+    });
+};
+
+const generateForcast = (data_object) => {
   return `
         <div class="icon-data">
             <img
@@ -19,57 +50,95 @@ const generateForcast = (forecast) => {
             style="height: 18px; width: 18px"
             />
             <span>
-            <h3 id="low">${forecast?.temperature_low || 0}</h3>
+            <h3 id="low">${data_object.min_temp}</h3>
             ˚/
-            <h3 id="high">${forecast?.temperature_high || 0}</h3>
+            <h3 id="high">${data_object.max_temp}</h3>
             ˚
             </span>
-            <h4>${forecast?.date || 'date'}</h4>
+            <h4>${data_object.date || "date"}</h4>
         </div>
-    `
+    `;
+};
+
+const getDay = (date) => {
+  return date.toLocaleDateString("en-US", { weekday: "short" }).toUpperCase();
+};
+
+const formDataObject = (data) => {
+  console.log(data);
+
+  const data_object = {};
+
+  data_object.city = data.city;
+
+  const weather_forecast_data = {};
+
+  const sorted_days = [getDay(new Date())];
+
+  data.list.forEach((weather) => {
+    const day = getDay(new Date(weather.dt_txt));
+
+    const data = {
+      wind: weather.wind.speed,
+      humid: weather.main.humidity,
+      visibility: weather.visibility,
+      time: new Date(weather.dt_txt).toLocaleTimeString(),
+      day,
+      dt_txt: weather.dt_txt,
+      feel: weather.main.feels_like,
+      pressure: weather.main.pressure,
+      grnd_level: weather.main.grnd_level,
+      sea_level: weather.main.sea_level,
+      min_temp: weather.main.temp_min,
+      max_temp: weather.main.temp_max,
+      temp: weather.main.temp,
+      description: weather.weather[0].description,
+    };
+
+    if (weather_forecast_data[day]) {
+      weather_forecast_data[day].push(data);
+    } else {
+      sorted_days.push(day);
+      weather_forecast_data[day] = [data];
+    }
+  });
+
+  data_object.forecast = weather_forecast_data;
+
+  console.log(data_object, sorted_days);
+
+  console.log(data_object);
+
+  const today = getDay(new Date());
+
+  displayData(data_object.forecast["TOM"][0]);
+
+  return data_object;
 }
 
-const displayData = (location) => {
-  if (!location) return
-  console.log(location)
-
-  temp.innerHTML = location?.current?.temperature
-  wind.innerHTML = location?.current?.wind_speed
-  humid.innerHTML = location?.current?.humidity
-  sight.innerHTML = location?.current?.visibility || 0
-  feel.innerHTML = location?.current?.feels_like || 0
-  rain.innerHTML = location?.current?.precipitation || 0
-
-  if (location.forecast?.length > 0) {
-    element3.innerHTML = ''
-
-    location?.forecast?.map(fore => {
-      const mainData = generateForcast(fore)
-      return (
-        element3.innerHTML += mainData
-      )
-    })
-  }
+const displayData = (data) => {
+  wind.innerHTML = data.wind;
+  temp.innerHTML = data.temp;
+  humid.innerHTML = data.humid;
 }
 
-let timerId
+let timerId;
 
 const debounceFetch = (searchVal) => {
   return () => {
-    clearTimeout(timerId)
-    console.log('timmer cleared')
+    clearTimeout(timerId);
+    // console.log('timmer');
 
     timerId = setTimeout(() => {
-      console.log('searching after 1s')
-      const location = getlocation(searchVal)
+      // console.log('search after a sec');
 
-      displayData(location)
-    }, 1000)
-  }
-}
+      getLocation(searchVal);
+    }, 1000);
+  };
+};
 
 searchField.oninput = (e) => {
-  const val = e.target.innerHTML
-  const debounce = debounceFetch(val)
-  debounce()
-}
+  const val = e.target.innerHTML;
+  const debounce = debounceFetch(val);
+  debounce();
+};
