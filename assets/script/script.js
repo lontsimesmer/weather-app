@@ -8,7 +8,7 @@ const sight = document.getElementById('sight')
 const feel = document.getElementById('feel')
 const rain = document.getElementById('rain')
 
-const API_KEY = 'b63c2cbd13be89101a87270b161a6cf0'
+const OPEN_WEATHER_KEY = 'b63c2cbd13be89101a87270b161a6cf0'
 
 const displayData = (weatherItems) => {
   const getDay = (date) => {
@@ -43,7 +43,7 @@ const displayData = (weatherItems) => {
 }
 
 const getDetailsOnWeather = (_cityName, lat, lon) => {
-  const WEATHER_API_URL = `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${API_KEY}`
+  const WEATHER_API_URL = `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${OPEN_WEATHER_KEY}`
 
   fetch(WEATHER_API_URL)
     .then((res) => res.json())
@@ -78,7 +78,7 @@ const getLocation = (cityName) => {
   if (!cityName) return
   console.log(cityName)
 
-  const GEOMETRIC_API_URL = `http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=5&appid=${API_KEY}`
+  const GEOMETRIC_API_URL = `http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=5&appid=${OPEN_WEATHER_KEY}`
 
   fetch(GEOMETRIC_API_URL)
     .then((res) => res.json())
