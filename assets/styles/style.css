@@ -26,7 +26,7 @@ main {
 .weather-content {
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  gap: 20px;
   justify-content: space-between;
   width: 100%;
 }
@@ -84,7 +84,7 @@ h1 {
   color: #696969;
   font-size: 13px;
   font-weight: 700;
-  margin-top: -13px;
+  margin-top: -15px;
 }
 
 .element2 {
@@ -122,10 +122,13 @@ small {
 }
 
 .element3 {
+  align-items: center;
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
   justify-content: center;
+  margin: 0 auto;
+  width: 90%;
 }
 
 .icon-data {

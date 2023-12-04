@@ -7,6 +7,7 @@ const humid = document.getElementById('humid')
 const sight = document.getElementById('sight')
 const feel = document.getElementById('feel')
 const rain = document.getElementById('rain')
+
 const API_KEY = 'b63c2cbd13be89101a87270b161a6cf0'
 
 const displayData = (weatherItems) => {
