@@ -72,7 +72,7 @@ const getDetailsOnWeather = (_cityName, lat, lon) => {
       })
     })
     .catch(() => {
-      console.error('Error occured during the fetching process!')
+      // console.error('Error occured during the fetching process!')
     })
 }
 
@@ -90,7 +90,7 @@ const getLocation = (cityName) => {
       getDetailsOnWeather(name, lat, lon)
     })
     .catch(() => {
-      console.error('Error occured during the fetching process!')
+      // console.error('Error occured during the fetching process!')
     })
 }
 
