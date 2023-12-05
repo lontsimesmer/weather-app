@@ -45,7 +45,7 @@ const displayData = (weatherItems) => {
 }
 
 const getDetailsOnWeather = (_cityName, lat, lon) => {
-  const WEATHER_API_URL = `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${API_KEY}`
+  const WEATHER_API_URL = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${API_KEY}`
 
   fetch(WEATHER_API_URL)
     .then((res) => res.json())
@@ -72,7 +72,6 @@ const getDetailsOnWeather = (_cityName, lat, lon) => {
       })
     })
     .catch(() => {
-      // console.error('Error occured during the fetching process!')
     })
 }
 
@@ -80,7 +79,7 @@ const getLocation = (cityName) => {
   if (!cityName) return
   console.log(cityName)
 
-  const GEOMETRIC_API_URL = `http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=5&appid=${API_KEY}`
+  const GEOMETRIC_API_URL = `https://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=5&appid=${API_KEY}`
 
   fetch(GEOMETRIC_API_URL)
     .then((res) => res.json())
@@ -90,7 +89,6 @@ const getLocation = (cityName) => {
       getDetailsOnWeather(name, lat, lon)
     })
     .catch(() => {
-      // console.error('Error occured during the fetching process!')
     })
 }
 
@@ -111,5 +109,5 @@ searchField.oninput = (e) => {
   debounce()
 }
 
-getLocation("Yaounde")
- searchField.innerHTML = "Yaounde";
+getLocation('Yaounde')
+searchField.innerHTML = 'Yaounde'
