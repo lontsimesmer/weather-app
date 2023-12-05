@@ -20,7 +20,7 @@ main {
   display: flex;
   height: 80vh;
   justify-content: center;
-  width: 40vw;
+  width: 50vw;
 }
 
 .weather-content {
