@@ -1,6 +1,7 @@
 const searchField = document.getElementById('search-field')
 const forcastDaysDiv = document.querySelector('.element3')
 const mainCloud = document.querySelector('.feather-1')
+const describe = document.querySelector('.features')
 const temp = document.getElementById('temp')
 const wind = document.getElementById('wind')
 const humid = document.getElementById('humid')
@@ -8,7 +9,7 @@ const sight = document.getElementById('sight')
 const feel = document.getElementById('feel')
 const rain = document.getElementById('rain')
 
-const openWetherKey = 'b63c2cbd13be89101a87270b161a6cf0'
+const API_KEY = 'b63c2cbd13be89101a87270b161a6cf0'
 
 const displayData = (weatherItems) => {
   const getDay = (date) => {
@@ -16,6 +17,7 @@ const displayData = (weatherItems) => {
   }
 
   mainCloud.innerHTML = weatherItems.weather[0].icon
+  describe.innerHTML = weatherItems.weather[0].description
   temp.innerHTML = Math.round(weatherItems.main.temp - 273.15)
   feel.innerHTML = (weatherItems.main.feels_like - 273.15).toFixed(2)
   sight.innerHTML = (weatherItems.wind.deg - 273.15).toFixed(2)
@@ -43,7 +45,7 @@ const displayData = (weatherItems) => {
 }
 
 const getDetailsOnWeather = (_cityName, lat, lon) => {
-  const WEATHER_API_URL = `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${openWetherKey}`
+  const WEATHER_API_URL = `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${API_KEY}`
 
   fetch(WEATHER_API_URL)
     .then((res) => res.json())
@@ -78,7 +80,7 @@ const getLocation = (cityName) => {
   if (!cityName) return
   console.log(cityName)
 
-  const GEOMETRIC_API_URL = `http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=5&appid=${openWetherKey}`
+  const GEOMETRIC_API_URL = `http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=5&appid=${API_KEY}`
 
   fetch(GEOMETRIC_API_URL)
     .then((res) => res.json())
@@ -108,3 +110,6 @@ searchField.oninput = (e) => {
   const debounce = debounceFetch(val)
   debounce()
 }
+
+getLocation("Yaounde")
+ searchField.innerHTML = "Yaounde";

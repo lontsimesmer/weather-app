@@ -20,7 +20,7 @@ main {
   display: flex;
   height: 80vh;
   justify-content: center;
-  width: 50vw;
+  width: 40vw;
 }
 
 .weather-content {
@@ -57,15 +57,17 @@ span {
 }
 
 .feather-1 {
+  animation: 1.5s ease 0s infinite beat;
   color: #ffd700;
   height: 100px;
   width: 100px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .feather-1 {
-    animation: feather-1-spin infinite 5s linear;
-  }
+.features {
+  color: #696969;
+  font-size: 15px;
+  font-weight: 700;
+  padding-left: 5px;
 }
 
 .num-deg {
@@ -168,12 +170,14 @@ h4 {
   font-weight: 600;
 }
 
-@keyframes feather-1-spin {
-  from {
-    transform: rotate(-10deg);
+@keyframes beat {
+  0%,
+  50%,
+  100% {
+    transform: scale(1, 1);
   }
-
-  to {
-    transform: rotate(10deg);
+  30%,
+  80% {
+    transform: scale(0.95, 0.95);
   }
 }
