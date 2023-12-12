@@ -24,6 +24,7 @@ const displayData = (weatherItems) => {
   wind.innerHTML = Math.round(weatherItems.wind.speed)
   rain.innerHTML = weatherItems?.rain * 100 || 0
   humid.innerHTML = weatherItems.main.humidity
+
   return `
     <div class="icon-data">
         <img
@@ -31,7 +32,7 @@ const displayData = (weatherItems) => {
             weatherItems.weather[0].icon
           }@2x.png"
           alt="cloud"
-          style="height: 32px; width: 32px"
+          style="height: 30px; width: 30px"
         />
         <span>
           <h3 id="low">${(weatherItems.main.temp_min - 273.15).toFixed(2)}</h3>
@@ -79,7 +80,7 @@ const getLocation = (cityName) => {
   if (!cityName) return
   console.log(cityName)
 
-  const GEOMETRIC_API_URL = `https://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=5&appid=${API_KEY}`
+  const GEOMETRIC_API_URL = `https://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=1&appid=${API_KEY}`
 
   fetch(GEOMETRIC_API_URL)
     .then((res) => res.json())
