@@ -1,0 +1,174 @@
+@import url("https://fonts.googleapis.com/css2?family=Ysabeau+Office:wght@1;100;200;300;400;500;600;700;800;900;1000&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Ysabeau Office", sans-serif;
+}
+
+main {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+}
+
+.container {
+  align-items: center;
+  border: 1px solid #eee;
+  background-color: #f0ffff;
+  display: flex;
+  height: 80vh;
+  justify-content: center;
+  width: 50vw;
+}
+
+.weather-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: space-between;
+  width: 100%;
+}
+
+span {
+  align-items: center;
+  color: #696969;
+  display: flex;
+  justify-content: center;
+  font-weight: 600;
+}
+
+#search-field {
+  border-bottom: 1px solid #ccc;
+  color: #000;
+  font-size: 18px;
+  font-weight: 800;
+  outline: none;
+  padding: 0 10px;
+  min-width: 2px;
+}
+
+.element1 {
+  align-items: center;
+  display: flex;
+  gap: 60px;
+  justify-content: center;
+}
+
+.feather-1 {
+  animation: 1.5s ease 0s infinite beat;
+}
+
+.features {
+  color: #696969;
+  font-size: 15px;
+  font-weight: 700;
+  padding-left: 5px;
+}
+
+.num-deg {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin-top: -30px;
+}
+
+h1 {
+  font-size: 70px;
+  font-weight: 200;
+}
+
+.celcuis {
+  color: #696969;
+  font-size: 13px;
+  font-weight: 700;
+  margin-top: -15px;
+}
+
+.element2 {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.unit {
+  align-items: center;
+  display: flex;
+  gap: 10px;
+}
+
+.feather-2 {
+  color: #696969;
+  height: 15px;
+  width: 15px;
+}
+
+.micro-unit {
+  align-items: flex-end;
+  display: flex;
+  gap: 3px;
+}
+
+h2 {
+  color: #696969;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+small {
+  color: #696969;
+}
+
+.element3 {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  margin: 0 auto;
+  width: 90%;
+}
+
+.icon-data {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+h3 {
+  color: #696969;
+  font-size: 17px;
+  font-weight: 400;
+}
+
+h4 {
+  color: #696969;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.element4 {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.units {
+  color: #696969;
+  font-size: small;
+  font-weight: 600;
+}
+
+@keyframes beat {
+  0%,
+  50%,
+  100% {
+    transform: scale(1, 1);
+  }
+  30%,
+  80% {
+    transform: scale(0.95, 0.95);
+  }
+}

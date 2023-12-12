@@ -3,7 +3,113 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <link rel="stylesheet" href="./assets/styles/style.css" />
+    <title>Weather</title>
   </head>
-  <body></body>
+  <script src="https://unpkg.com/feather-icons"></script>
+  <body>
+    <main>
+      <div class="container">
+        <div class="weather-content">
+          <span class="heading">
+            Right now in
+            <span contenteditable="true" id="search-field"></span>
+            , there is <span class="features">rain</span>.
+          </span>
+          <div class="element1">
+            <img
+              src="https://openweathermap.org/img/wn/02d@2x.png"
+              alt="cloud"
+              class="feather-1"
+            />
+            <div class="num-deg">
+              <h1 id="temp">99</h1>
+              <span class="celcuis"
+                ><p id="feel">69</p>
+                ˚/
+                <p id="sight">100</p>
+                ˚</span
+              >
+            </div>
+            <div class="element2">
+              <div class="unit">
+                <i class="feather-2" data-feather="wind"></i>
+                <div class="micro-unit">
+                  <h2 id="wind">8</h2>
+                  <small>mph</small>
+                </div>
+              </div>
+              <div class="unit">
+                <img
+                  src="./assets/images/rain-umbrella.png"
+                  alt="shelter"
+                  style="height: 14px; width: 14px"
+                />
+                <div class="micro-unit">
+                  <h2 id="rain">0</h2>
+                  <small>%</small>
+                </div>
+              </div>
+              <div class="unit">
+                <i class="feather-2" data-feather="droplet"></i>
+                <div class="micro-unit">
+                  <h2 id="humid">30</h2>
+                  <small>%</small>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="element3">
+            <div class="icon-data">
+              <img src="./assets/images/cloudy.png" alt="cloud" />
+              <span>
+                <h3 id="low">70</h3>
+                ˚/
+                <h3 id="high">103</h3>
+                ˚
+              </span>
+              <h4>TOM</h4>
+            </div>
+            <div class="icon-data">
+              <img src="./assets/images/cloudy.png" alt="cloud" />
+              <span>
+                <h3>71</h3>
+                ˚/
+                <h3>103</h3>
+                ˚
+              </span>
+              <h4>THURS</h4>
+            </div>
+            <div class="icon-data">
+              <i data-feather="sun"></i>
+              <span>
+                <h3>71</h3>
+                ˚/
+                <h3>107</h3>
+                ˚
+              </span>
+              <h4>FRI</h4>
+            </div>
+            <div class="icon-data">
+              <i data-feather="sun"></i>
+              <span>
+                <h3>75</h3>
+                ˚/
+                <h3>110</h3>
+                ˚
+              </span>
+              <h4>SAT</h4>
+            </div>
+          </div>
+          <div class="element4">
+            <p class="units">˚F | ˚C</p>
+          </div>
+        </div>
+      </div>
+    </main>
+    <script>
+      feather.replace();
+    </script>
+  </body>
+  <script src="./assets/script/script.js" type="module"></script>
 </html>
